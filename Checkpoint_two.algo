@@ -1,0 +1,27 @@
+ALGORITHM trie_simple
+
+VAR
+    arr : ARRAY_OF INTEGER;
+    i, j, current : INTEGER
+
+BEGIN
+    
+    FOR i FROM 1 TO length(arr) - 1 DO
+        current := arr[i]
+        j := i - 1
+    
+        WHILE (j >= 0 AND arr[j] > current) DO
+            arr[j + 1] := arr[j]
+            j := j - 1
+        END WHILE
+    
+        arr[j + 1] := current
+    END FOR
+
+    
+    // Afficher le tableau trié
+    FOR i FROM 0 TO length(arr) - 1 DO
+        Write(arr[i])
+    END FOR
+
+END
