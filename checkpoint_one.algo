@@ -1,0 +1,63 @@
+ALGORITHM lire_phrase
+
+VAR
+    length : INTEGER
+    word_count : INTEGER
+    vowel_count : INTEGER
+    vowels : STRING
+    in_word : BOOLEAN
+    character : CHAR
+    sentence : STRING
+
+BEGIN
+    length := 0
+    word_count := 0
+    vowel_count := 0
+    vowels := "aeiouAEIOU"
+    in_word := FALSE
+
+    Read(sentence)
+
+    FOR EACH character IN sentence DO
+        IF character = "." THEN
+            EXIT
+
+        length := length + 1
+
+        IF character IN vowels THEN
+            vowel_count := vowel_count + 1
+
+        IF character <> " " THEN
+            IF NOT in_word THEN
+                word_count := word_count + 1
+                in_word := TRUE
+        ELSE
+            in_word := FALSE
+    END FOR
+
+    Write(length, word_count, vowel_count)
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git remote add origin https://github.com/danielSombo/Checkpoint-Algorithms-and-its-elements.git
