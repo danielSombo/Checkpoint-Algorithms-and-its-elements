@@ -1,62 +1,37 @@
-ALGORITHM lire_phrase
-
+ALGORITHM read_sentence
 VAR
-    length : INTEGER
-    word_count : INTEGER
-    vowel_count : INTEGER
-    vowels : STRING
-    in_word : BOOLEAN
-    character : CHAR
-    sentence : STRING
-
+    longeur : INTEGER
+    mot_compte : INTEGER
+    voyelle_compte : INTEGER
+    voyelle : ARRAY_OF STRING[12];
+    es_mot : BOOLEAN
+    caractere : STRING
+    phrase : STRING
 BEGIN
-    length := 0
-    word_count := 0
-    vowel_count := 0
-    vowels := "aeiouAEIOU"
-    in_word := FALSE
+    Write("Donne moi une phrase")
+    Read(phrase)
+    caractere := phrase.length
+    Write("Le nombre de caractère est de :", caractere)
+    mot_compte := 1
+    voyelle_compte := 0
+    voyelle := [a,e,i,o,u,y,A,E,I,O,U,Y]
 
-    Read(sentence)
+    FOR i FROM 0 TO phrase.length STEP 1  DO
+        IF (phrase[i] === ".") THEN
+            BREAK
+        END_IF
 
-    FOR EACH character IN sentence DO
-        IF character = "." THEN
-            EXIT
+        IF (phrase[i] === " " AND es_mot = FALSE) THEN
+            es_mot = TRUE
+            mot_compte := mot_compte + 1
+        END_IF
 
-        length := length + 1
+        IF (phrase[i] in voyelle) THEN
+            voyelle_compte := voyelle_compte +1
+        END_IF
+    END_FOR
 
-        IF character IN vowels THEN
-            vowel_count := vowel_count + 1
-
-        IF character <> " " THEN
-            IF NOT in_word THEN
-                word_count := word_count + 1
-                in_word := TRUE
-        ELSE
-            in_word := FALSE
-    END FOR
-
-    Write(length, word_count, vowel_count)
+    Write("Nombre de caractère dans la phrase :", caractere)
+    Write("Nombre de mot dans la phrase :", mot_compte)
+    Write("Nombre de voyelle dans la phrase :", voyelle_compte)
 END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
